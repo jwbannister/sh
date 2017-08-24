@@ -6,5 +6,4 @@ tmux resize-pane -t $1.0 -x 120
 tmux select-pane -t $1.0 
 tmux send-keys "vim" C-m
 tmux send-keys ":30vs" C-m
-tmux send-keys "-" C-m
 tmux attach -t $1
