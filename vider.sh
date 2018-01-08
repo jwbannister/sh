@@ -1,9 +1,17 @@
 #! /usr/bin/env bash
 cd $1
-tmux new -s $1 -d
-tmux split-window -h -t $1
-tmux resize-pane -t $1.0 -x 120
-tmux select-pane -t $1.0 
-tmux send-keys "vim" C-m
-tmux send-keys ":30vs" C-m
-tmux attach -t $1
+if [ -z "$2" ]; then
+    SESH=$1
+else
+    SESH=$2
+fi 
+tmux new -s $SESH -d
+tmux split-window -bh -t $SESH 
+tmux send-keys -t left "vim" C-m
+tmux send-keys -t left ":30vs" C-m
+tmux send-keys -t left "-" C-m
+tmux send-keys -t left C-l 
+tmux send-keys -t left C-h 
+tmux send-keys -t left ":bd 2" C-m
+tmux send-keys -t right "R" C-m
+tmux attach -t $SESH
